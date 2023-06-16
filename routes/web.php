@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\SPKController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
@@ -29,6 +30,11 @@ use App\Models\Category;
 
 Route::get('/', function () {
     return view('auth/login');
+});
+
+Route::group(['prefix' => 'sistem-pendukung-keputusan'], function () {
+        //role
+        Route::resource('spk-data', SPKController::class);
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
